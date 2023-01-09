@@ -1,6 +1,62 @@
-<div class="container">
+
+<div class="search">
+  <form #form="ngForm" (submit)="onSubmit()">
+    <input type="text" placeholder="Search City" name="city" [(ngModel)]="cityName">
+  </form>
+</div>
+
+<div class="container" *ngIf="weatherData">
   <div class="upper-data">
-    <!-- <img src="../../../assets/summer.jpg" *ngIf="14 < 15" /> -->
+    <img src="../../../assets/summer.jpg" *ngIf="weatherData.main.temp < 15" />
+    <img src="../../../assets/night.jpg" *ngIf="weatherData.main.temp > 15" />
+
+    <div class="weather-data">
+      <div class="location">{{weatherData.name}}</div>
+      <div class="temperature">{{ weatherData.main.temp | number : "1.0-0" }}°C</div>
+    </div>
+  </div>
+  <div class="lower-data">
+    <div class="more-info-label">More Information</div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../../../assets/cold.jpg" />
+          <span>min</span>
+        </div>
+        <div class="info-block-value">{{weatherData.main.temp_min}}</div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../../../assets/thermometerWarm.jpg" />
+          <span>max</span>
+        </div>
+        <div class="info-block-value">{{weatherData.main.temp_max}}</div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../../../assets/humidity.jpg" />
+          <span>humidity</span>
+        </div>
+        <div class="info-block-value">{{weatherData.main.humidity}}%</div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../../../assets/windy.jpg" />
+          <span>Wind</span>
+        </div>
+        <div class="info-block-value">{{weatherData.wind.speed}} Km/h</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container">
+  <div class="upper-data">
+    <img src="../../../assets/summer.jpg" *ngIf="14 < 15" />
     <img src="../../../assets/night.jpg" *ngIf="14 <= 15" />
 
     <div class="weather-data">
@@ -13,7 +69,7 @@
     <div class="more-info-container">
       <div class="info-block">
         <div class="info-block-label">
-          <img src="../../../assets/coldTemperature.webp" />
+          <img src="../../../assets/cold.jpg" />
           <span>min</span>
         </div>
         <div class="info-block-value">10°C</div>
@@ -21,7 +77,7 @@
 
       <div class="info-block">
         <div class="info-block-label">
-          <img src="../../../assets/warmtemperature.webp" />
+          <img src="../../../assets/thermometerWarm.jpg" />
           <span>max</span>
         </div>
         <div class="info-block-value">40°C</div>
@@ -37,7 +93,7 @@
 
       <div class="info-block">
         <div class="info-block-label">
-          <img src="../../../assets/wind.jpg" />
+          <img src="../../../assets/windy.jpg" />
           <span>Wind</span>
         </div>
         <div class="info-block-value">11 Km/h</div>
@@ -45,3 +101,4 @@
     </div>
   </div>
 </div>
+ -->
